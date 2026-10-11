@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
   },
+
+  serverExternalPackages: ["mongodb"],
+
   turbopack: {
     rules: {
       "*.css": {
