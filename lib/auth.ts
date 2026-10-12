@@ -5,7 +5,21 @@ import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 
-const client = new MongoClient(process.env.MONGODB_URI!);
+const uri = process.env.MONGODB_URI;
+
+if (!uri) {
+  throw new Error("MONGODB_URI is missing");
+}
+
+declare global {
+  // eslint-disable-next-line no-var
+  var _mongoClient: MongoClient | undefined;
+}
+
+const client =
+  globalThis._mongoClient ??
+  (globalThis._mongoClient = new MongoClient(uri));
+
 const db = client.db("bazardor");
 
 export const auth = betterAuth({
@@ -14,9 +28,6 @@ export const auth = betterAuth({
   trustedOrigins: [
     "http://localhost:3000",
     "https://b14-a7-bazar-dor-five.vercel.app",
-    "https://b14-a7-bazar-dor-1wtzi27mz-mastermindshehab.vercel.app",
-    "https://b14-a7-bazar-apnykn66b-mastermindshehab.vercel.app",
-    "https://b14-a7-bazar-ilbwdk23k-mastermindshehab.vercel.app",
     "https://*.vercel.app",
   ],
 
