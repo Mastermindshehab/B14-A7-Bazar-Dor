@@ -16,6 +16,8 @@ export const auth = betterAuth({
     "https://b14-a7-bazar-dor-five.vercel.app",
     "https://b14-a7-bazar-dor-1wtzi27mz-mastermindshehab.vercel.app",
     "https://b14-a7-bazar-apnykn66b-mastermindshehab.vercel.app",
+    "https://b14-a7-bazar-ilbwdk23k-mastermindshehab.vercel.app",
+    "https://*.vercel.app",
   ],
 
   database: mongodbAdapter(db, { client }),
